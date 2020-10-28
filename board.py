@@ -22,6 +22,7 @@ class Board(Frame):
         rankOne.pack(side = TOP, fill = BOTH, expand = True)
 
         self.labels = {}
+        self.forceLabels = {}
 
         self._createSquare(rankOne, Square.A1)
         self._createSquare(rankOne, Square.B1)
@@ -61,11 +62,17 @@ class Board(Frame):
         label.bind("<Button-1>", lambda e: self._squareClicked(square))
         self.labels[square] = label
 
+        forceLabel = Label(label, text = "--", bg = bg)
+        forceLabel.place(relx=0.5, rely = 1.0, y = -2, anchor = S)
+        self.forceLabels[square] = forceLabel
+
     def mark(self, square: Square):
         self.labels[square].configure(bg = ("#%02x%02x%02x" % (0, 64, 255)))
+        self.forceLabels[square].configure(bg = ("#%02x%02x%02x" % (0, 64, 255)))
 
     def demark(self, square: Square):
         self.labels[square].configure(bg = self._background(square))
+        self.forceLabels[square].configure(bg = self._background(square))
 
     def _squareClicked(self, square):
         self.listener.board_clicked(square)
