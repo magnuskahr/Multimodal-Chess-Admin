@@ -68,6 +68,11 @@ class BoardController():
             self.board.mark(square)
             return
 
+         # if deselecting
+        if (self.board_selected_square == square):
+            self.board.demark(self.board_selected_square)
+            self.board_selected_square = None
+
         # if moving selection
         if (not self.occupied(self.board_selected_square)):
             self.board.demark(self.board_selected_square)
