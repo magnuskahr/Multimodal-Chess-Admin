@@ -1,6 +1,8 @@
 from square import *
 from piece import *
 from color import *
+from force import *
+import keyboard
 
 class BoardController():
 
@@ -27,6 +29,26 @@ class BoardController():
             Square.C2: None,
             Square.C3: None
         }
+        
+        keyboard.add_hotkey("space", lambda: self._keyPressed("space"))
+        keyboard.add_hotkey("down", lambda: self._keyPressed("down"))
+        keyboard.add_hotkey("up", lambda: self._keyPressed("up"))
+
+    def _keyPressed(self, key):
+        if (self.board_selected_square == None): return
+ 
+        if (key == "space"):
+            self.board.setForce(self.board_selected_square, Force.neutral)
+        elif (key == "down"):
+            self.board.setForce(self.board_selected_square, Force.pull)
+        elif (key == "up"):
+            self.board.setForce(self.board_selected_square, Force.push)
+        else:
+            return
+
+        self.board.demark(self.board_selected_square)
+        self.board_selected_square = None
+
 
     def selector_clicked(self, piece: Piece, color: Color):
         if (self.selector == None): return

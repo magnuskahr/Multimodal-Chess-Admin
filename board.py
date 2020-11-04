@@ -2,6 +2,7 @@ from tkinter import *
 from square import *
 from piece import *
 from color import *
+from force import *
 
 class Board(Frame):
 
@@ -62,9 +63,12 @@ class Board(Frame):
         label.bind("<Button-1>", lambda e: self._squareClicked(square))
         self.labels[square] = label
 
-        forceLabel = Label(label, text = "--", bg = bg)
+        forceLabel = Label(label, text = Force.neutral.value, bg = bg)
         forceLabel.place(relx=0.5, rely = 1.0, y = -2, anchor = S)
         self.forceLabels[square] = forceLabel
+
+    def setForce(self, square: Square, force: Force):
+        self.forceLabels[square].configure(text = force.value)
 
     def mark(self, square: Square):
         self.labels[square].configure(bg = ("#%02x%02x%02x" % (0, 64, 255)))
