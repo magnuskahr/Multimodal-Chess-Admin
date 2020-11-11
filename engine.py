@@ -7,7 +7,7 @@ class Engine():
     def __init__(self):
         self.stockfish = Stockfish(depth = 3, parameters={
             "Write Debug Log": True,
-            #"Threads": self._recommended_threads(),
+            "Threads": self._recommended_threads(),
             "Skill Level": 20, 
             "Minimum Thinking Time": 0,
             "Slow Mover": 0,
@@ -33,7 +33,8 @@ class Engine():
                 self.stockfish.makeMove(move)
                 
                 eva = self.stockfish.get_evaluation()
-                if abs(eva['value']) == 0 or abs(eva['value']) == 1:
+                
+                if eva['type'] == "mate" and abs(eva['value']) >= 0:
                     squareRatings[square] = Force.pull
                 else:
                     squareRatings[square] = Force.neutral
