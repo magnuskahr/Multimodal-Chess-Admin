@@ -156,7 +156,8 @@ class BoardController():
             fromColor = self.getColor(fromSquare)
             toColor = self.getColor(square)
 
-            if self.getColor(square) != fromColor and self.getColor(square) != None:
+            # hvis modsat farve
+            if toColor != None and toColor != fromColor:
                 return Force.neutral
 
             if fromColor != toColor:
@@ -164,26 +165,12 @@ class BoardController():
             else:
                 return Force.neutral
 
-        self.board.setForce(Square.A1, force(Square.A1))
-        self.board.setForce(Square.A2, force(Square.A2))
-        self.board.setForce(Square.A3, force(Square.A3))
-        self.board.setForce(Square.B1, force(Square.B1))
-        self.board.setForce(Square.B2, force(Square.B2))
-        self.board.setForce(Square.B3, force(Square.B3))
-        self.board.setForce(Square.C1, force(Square.C1))
-        self.board.setForce(Square.C2, force(Square.C2))
-        self.board.setForce(Square.C3, force(Square.C3))
+        for square in Square:
+            self.board.setForce(square, force(square))
 
     def clearForces(self):
-        self.board.setForce(Square.A1, Force.neutral)
-        self.board.setForce(Square.A2, Force.neutral)
-        self.board.setForce(Square.A3, Force.neutral)
-        self.board.setForce(Square.B1, Force.neutral)
-        self.board.setForce(Square.B2, Force.neutral)
-        self.board.setForce(Square.B3, Force.neutral)
-        self.board.setForce(Square.C1, Force.neutral)
-        self.board.setForce(Square.C2, Force.neutral)
-        self.board.setForce(Square.C3, Force.neutral)
+        for square in Square:
+            self.board.setForce(square, Force.neutral)
 
 
     def move(self, fromSquare: Square, toSquare: Square):
@@ -233,5 +220,6 @@ class BoardController():
             "color": color
         }
 
-    def test(self):
-        print(self.get_fen())
+    def clearAll(self):
+        for square in Square:
+            self.clear(square)
