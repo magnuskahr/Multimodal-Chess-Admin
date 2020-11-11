@@ -2,12 +2,14 @@ from square import *
 from piece import *
 from color import *
 from force import *
+from engine import *
 import keyboard
 
 class BoardController():
 
     def __init__(self):
 
+        self.engine = Engine()
         self.board = None
         self.selector = None
 
@@ -49,6 +51,37 @@ class BoardController():
         self.board.demark(self.board_selected_square)
         self.board_selected_square = None
 
+    def get_fen(self, color):
+
+        rank1 = self.get_fen_rank(Square.A1, Square.B1, Square.C1)
+        rank2 = self.get_fen_rank(Square.A2, Square.B2, Square.C2)
+        rank3 = self.get_fen_rank(Square.A3, Square.B3, Square.C3)
+
+        if color == Color.white:
+            return "8/8/8/8/8/"+rank3+"/"+rank2+"/"+rank1+" w - - 0 1"
+        else:
+            return "8/8/8/8/8/"+rank3+"/"+rank2+"/"+rank1+" b - - 0 1"
+
+
+    def get_fen_rank(self, a, b, c):
+        if self.board_data[a] == None and self.board_data[b] != None and self.board_data[c] != None:
+            return "1" + self.getCasedPiece(b) + self.getCasedPiece(c) + "5"
+        if self.board_data[a] != None and self.board_data[b] == None and self.board_data[c] != None:
+            return self.getCasedPiece(a) + "1" + self.getCasedPiece(c) + "5"
+        if self.board_data[a] != None and self.board_data[b] != None and self.board_data[c] == None:
+            return self.getCasedPiece(a) + self.getCasedPiece(b) + "6"
+
+        if self.board_data[a] == None and self.board_data[b] == None and self.board_data[c] != None:
+            return "2"+ self.getCasedPiece(c) + "5"
+        if self.board_data[a] == None and self.board_data[b] != None and self.board_data[c] == None:
+            return "1" + self.getCasedPiece(b) + "6"
+        if self.board_data[a] != None and self.board_data[b] == None and self.board_data[c] == None:
+            return self.getCasedPiece(a) + "7"
+
+        if self.board_data[a] != None and self.board_data[b] != None and self.board_data[c] != None:
+            return self.getCasedPiece(a) + self.getCasedPiece(b) + self.getCasedPiece(c) + "5"
+        
+        return "8"
 
     def selector_clicked(self, piece: Piece, color: Color):
         if (self.selector == None): return
@@ -88,24 +121,70 @@ class BoardController():
         if (self.board_selected_square == None):
             self.board_selected_square = square
             self.board.mark(square)
+
+            if self.board_data[square] != None:
+                self.applyForces(square)
             return
 
          # if deselecting
         if (self.board_selected_square == square):
             self.board.demark(self.board_selected_square)
             self.board_selected_square = None
+            
+            if self.board_data[square] != None:
+                self.clearForces()
 
         # if moving selection
         if (not self.occupied(self.board_selected_square)):
             self.board.demark(self.board_selected_square)
             self.board.mark(square)
             self.board_selected_square = square
+            self.clearForces()
             return
         
         # if performing a move
         self.move(self.board_selected_square, square)
         self.board.demark(self.board_selected_square)
         self.board_selected_square = None
+        self.clearForces()
+
+    def applyForces(self, fromSquare: Square):
+        fen = self.get_fen(self.getColor(fromSquare))
+        ratings = self.engine.rateSquares(fen, str(fromSquare).split(".")[1].lower())
+
+        def force(square):
+            fromColor = self.getColor(fromSquare)
+            toColor = self.getColor(square)
+
+            if self.getColor(square) != fromColor and self.getColor(square) != None:
+                return Force.neutral
+
+            if fromColor != toColor:
+                return ratings[str(square).split(".")[1].lower()]
+            else:
+                return Force.neutral
+
+        self.board.setForce(Square.A1, force(Square.A1))
+        self.board.setForce(Square.A2, force(Square.A2))
+        self.board.setForce(Square.A3, force(Square.A3))
+        self.board.setForce(Square.B1, force(Square.B1))
+        self.board.setForce(Square.B2, force(Square.B2))
+        self.board.setForce(Square.B3, force(Square.B3))
+        self.board.setForce(Square.C1, force(Square.C1))
+        self.board.setForce(Square.C2, force(Square.C2))
+        self.board.setForce(Square.C3, force(Square.C3))
+
+    def clearForces(self):
+        self.board.setForce(Square.A1, Force.neutral)
+        self.board.setForce(Square.A2, Force.neutral)
+        self.board.setForce(Square.A3, Force.neutral)
+        self.board.setForce(Square.B1, Force.neutral)
+        self.board.setForce(Square.B2, Force.neutral)
+        self.board.setForce(Square.B3, Force.neutral)
+        self.board.setForce(Square.C1, Force.neutral)
+        self.board.setForce(Square.C2, Force.neutral)
+        self.board.setForce(Square.C3, Force.neutral)
+
 
     def move(self, fromSquare: Square, toSquare: Square):
         occupied, color, piece = self.get(fromSquare)
@@ -130,6 +209,10 @@ class BoardController():
             return False, None, None
         else:
             return True, color, piece
+    
+    def getCasedPiece(self, square: Square):
+        data = self.board_data[square]
+        return data["piece"].value if data['color'] == Color.white else data["piece"].value.lower()
 
     def getColor(self, square: Square):
         data = self.board_data[square]
@@ -151,7 +234,4 @@ class BoardController():
         }
 
     def test(self):
-        self.board.place(Piece.K, Color.black, Square.C3)
-        self.board.place(Piece.R, Color.white, Square.B1)
-        self.board.place(Piece.R, Color.white, Square.A2)
-
+        print(self.get_fen())

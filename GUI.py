@@ -12,6 +12,7 @@ class GUI:
       self.window = Tk(className = "Chess admin")
       self.window.geometry("500x800")
 
+      self.board_controller = board_controller
       self.board = Board(self.window, board_controller)
       self.board.pack(side = TOP, fill = BOTH, expand = True)
       board_controller.board = self.board
@@ -27,9 +28,7 @@ class GUI:
       button.pack()
 
    def test(self):
-      self.board.clearAll()
-
-      self.board.place(Piece.K, Color.white, Square.B2)
+      self.board_controller.test()
 
    def start(self):
 
