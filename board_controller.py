@@ -58,9 +58,9 @@ class BoardController():
         rank3 = self.get_fen_rank(Square.A3, Square.B3, Square.C3)
 
         if color == Color.white:
-            return "8/8/8/4B3/3R4/"+rank3+"/"+rank2+"/"+rank1+" w - - 0 1"
+            return "8/8/8/8/8/"+rank3+"/"+rank2+"/"+rank1+" w - - 0 1"
         else:
-            return "8/8/8/4B3/3R4/"+rank3+"/"+rank2+"/"+rank1+" b - - 0 1"
+            return "8/8/8/8/8/"+rank3+"/"+rank2+"/"+rank1+" b - - 0 1"
 
 
     def get_fen_rank(self, a, b, c):
