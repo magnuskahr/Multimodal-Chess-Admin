@@ -66,10 +66,11 @@ class ServoController():
 
     def run(self):
         for square in self.squares:
-            newReading = GPIO.input(self.squares[square]["pins"]["photoResistor"])
-            if newReading != self.squares[square]["state"]["occupied"]:
-                self.squares[square]["state"]["occupied"] = newReading
-                if newReading is 0:
+            read = GPIO.input(self.squares[square]["pins"]["photoResistor"])
+            isNowOccupied = True if read == 1 else False
+            if isNowOccupied != self.squares[square]["state"]["occupied"]:
+                self.squares[square]["state"]["occupied"] = isNowOccupied
+                if isNowOccupied:
                     #print(square)
                     #self.squares[square]["servo"].ChangeDutyCycle(NORTH)
                     self.controller.board_placed_square(square)
