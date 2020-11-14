@@ -91,6 +91,12 @@ class BoardController():
         self.selector_selected_piece = piece
         self.selector.mark(piece, color)
 
+    def mark(self, square: Square):
+        self.board.mark(square)
+
+        if self.board_data[square] != None:
+            self.applyForces(square)
+
     def board_clicked(self, square: Square):
         # if a piece is about to be placed
         if (self.selector_selected_piece != None and self.selector_selected_color != None):
@@ -103,10 +109,7 @@ class BoardController():
         # if selecting a piece on the board to move, or moving selection
         if (self.board_selected_square == None):
             self.board_selected_square = square
-            self.board.mark(square)
-
-            if self.board_data[square] != None:
-                self.applyForces(square)
+            self.mark(square)
             return
 
          # if deselecting

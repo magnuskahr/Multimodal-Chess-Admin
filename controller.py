@@ -20,12 +20,13 @@ class Controller():
     def board_lifted_square(self, square: Square):
         occupied, color, piece = self.board.get(square)
         if occupied == False:
-            print("Error: lifted an onregistred piece from " + str(square))
+            print("Error: lifted an unregistred piece from " + str(square))
             return
 
         if self.lifting != None:
-            print("Lifted attacked piece")
+            print("Lifted attacked piece from " + str(square))
             self.board.clear(square)
+            self.board.applyForces(self.lifting["square"]) # recalculate forces
             return
 
         print("lifting " + str(piece) + " of color " + str(color) + " from " + str(square))
@@ -38,10 +39,10 @@ class Controller():
             occupied, color, piece = self.board.get(square)
             if occupied:
                 # if we are placing piece on board from GUI
-                print("placed the " + str(color) + " " + str(piece) + " on " + str(square))
+                print(str(color) + " " + str(piece) + " on " + str(square) + " are placed in GUI and is now registred")
             else:
                 # if we are setting up the board frely
-                print("placed a piece freely on " + str(square) + "")
+                print("placed a piece freely on " + str(square) + ", please registre it in GUI")
             return
 
         # we are moving a piece    
@@ -57,6 +58,7 @@ class Controller():
             "piece": piece,
             "square": fromSquare
         }
+        self.board.mark(fromSquare)
 
     def _place(self, onSquare):
         self.board.move(self.lifting["square"], onSquare)
