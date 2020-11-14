@@ -24,7 +24,18 @@ class Controller():
         return
 
     def board_placed_square(self, square: Square):
-        if self.lifting == None: return
+        if self.lifting == None: 
+            
+            occupied, color, piece = self.board.get(square)
+            if occupied:
+                # if we are placing piece on board from GUI
+                print("placed the " + str(color) + " " + str(piece) + " on " + str(square))
+            else:
+                # if we are setting up the board frely
+                print("placed a piece freely on " + str(square) + "")
+            return
+
+        # we are moving a piece    
         print("placed " + str(self.lifting["piece"]) + " on " + str(square))
         self._place(square)
 
