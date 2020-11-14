@@ -61,6 +61,7 @@ class ServoController():
             GPIO.setup(self.squares[square]["pins"]["photoResistor"], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
             GPIO.setup(self.squares[square]["pins"]["led"], GPIO.OUT)
             GPIO.setup(self.squares[square]["pins"]["servo"], GPIO.OUT)
+            GPIO.output(self.squares[square]["pins"]["led"], GPIO.LOW)
             self.squares[square]["servo"] = GPIO.PWM(self.squares[square]["pins"]["servo"], 50)
             self.squares[square]["servo"].start(6.6)
 
