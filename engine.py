@@ -49,3 +49,15 @@ class Engine():
 #print(str(squareRatings["a3"]) + " " + str(squareRatings["b3"]) + " "  + str(squareRatings["c3"]))
 #print(str(squareRatings["a2"]) + " " + str(squareRatings["b2"]) + " "  + str(squareRatings["c2"]))
 #print(str(squareRatings["a1"]) + " " + str(squareRatings["b1"]) + " "  + str(squareRatings["c1"]))
+
+stockfish = Stockfish(depth = 3, parameters={
+            "Write Debug Log": True,
+            "Threads": 2,
+            "Skill Level": 20, 
+            "Minimum Thinking Time": 0,
+            "Slow Mover": 0,
+        })
+
+stockfish.set_fen_position("8/8/8/8/8/1K6/N7/1kR5 w - - 0 1")
+print(stockfish.get_evaluation())
+
