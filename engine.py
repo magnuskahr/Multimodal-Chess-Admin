@@ -23,7 +23,7 @@ class Engine():
         return virtual_memory().available/(2*1024*1024)		
 
     def rateSquares(self, board, originPosition, oKingSquare):
-        print("ENGINE.py rating board: " + board)
+        
         squareRatings = {}
         for square in self.squares:
             move = originPosition + square

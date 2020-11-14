@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from square import *
 from force import *
+from controller import *
 
 NORTH = 2.6
 MID = 6.6
@@ -9,7 +10,9 @@ SOUTH = 10.6
 
 class ServoController():
 
-    def __init__(self):
+    def __init__(self, c):
+
+        self.controller = c
 
         self.squares = {
             Square.A1: {
