@@ -63,9 +63,7 @@ class GUI:
       randomButton.pack()
 
    def clear(self):
-      self.board_controller.clearAll()
-      self.board_controller.clearForces()
-      self.board_controller.board.clearAll()
+      self.board_controller.reset()
 
    def save(self):
       converted = {
