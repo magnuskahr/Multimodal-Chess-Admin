@@ -76,7 +76,7 @@ class ServoController():
         '''
     
     def setForce(self, force: Force, square: Square):
-        currentForce = self.squares["state"]["force"]
+        currentForce = self.squares[square]["state"]["force"]
         if currentForce == force:
             return
         
