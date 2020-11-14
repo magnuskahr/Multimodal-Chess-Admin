@@ -9,7 +9,7 @@ class ServoController():
 
     def __init__(self):
 
-        squares = {
+        self.squares = {
             1: {
                 "pins": { "photoResistor": 11, "led": 12, "servo": 0 },
                 "state": { "occupied": False }
@@ -47,13 +47,23 @@ class ServoController():
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
 
-        for square in squares:
-            GPIO.setup(squares[square]["pins"]["photoResistor"], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-            GPIO.setup(squares[square]["pins"]["led"], GPIO.OUT)
-            GPIO.setup(squares[square]["pins"]["servo"], GPIO.OUT)
-            squares[square]["servo"] = GPIO.PWM(squares[square]["pins"]["servo"], 50)
-            squares[square]["servo"].start(6.6)
+        for square in self.squares:
+            GPIO.setup(self.squares[square]["pins"]["photoResistor"], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+            GPIO.setup(self.squares[square]["pins"]["led"], GPIO.OUT)
+            GPIO.setup(self.squares[square]["pins"]["servo"], GPIO.OUT)
+            self.squares[square]["servo"] = GPIO.PWM(self.squares[square]["pins"]["servo"], 50)
+            self.squares[square]["servo"].start(6.6)
 
+    def run(self):
+        for square in self.squares:
+            newReading = GPIO.input(self.squares[square]["pins"]["photoResistor"])
+            if newReading != self.squares[square]["state"]["occupied"]:
+                self.squares[square]["state"]["occupied"] = newReading
+                if newReading is 1:
+                    self.squares[square]["servo"].ChangeDutyCycle(NORTH)
+                else:
+                    self.squares[square]["servo"].ChangeDutyCycle(SOUTH)
+        
 '''
 while True:
     for square in squares:

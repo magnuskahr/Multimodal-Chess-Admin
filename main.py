@@ -12,7 +12,10 @@ class App(threading.Thread):
       self.gui = GUI(self.bc)
       threading.Thread.__init__(self)
       self.start()
-      self.gui.start()
+
+      while True:
+         self.sc.run()
+         self.gui.start()
 
    def run(self):
       print("running")

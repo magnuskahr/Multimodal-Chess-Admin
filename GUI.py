@@ -112,4 +112,6 @@ class GUI:
 
 
    def start(self):
-      self.window.mainloop()
+      #self.window.mainloop()
+      tk.update_idletasks()
+      tk.update()
