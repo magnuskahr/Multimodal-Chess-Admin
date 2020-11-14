@@ -3,6 +3,8 @@ from board_controller import *
 from servo_controller import *
 
 from square import *
+from color import *
+from piece import *
 
 class Controller():
 
@@ -17,13 +19,13 @@ class Controller():
 
     def board_lifted_square(self, square: Square):
         _, color, piece = self.board.get(square)
-        print("lifting " + piece + " of color " + color + " from " + square)
+        print("lifting " + piece.value + " of color " + color.value + " from " + square.value)
         self._lift(color, piece, square)
         return
 
     def board_placed_square(self, square: Square):
         if self.lifting == None: return
-        print("placed " + self.lifting["piece"] + " on " + square)
+        print("placed " + self.lifting["piece"] + " on " + square.value)
         self._place(square)
 
     def setForce(self, a, b):
