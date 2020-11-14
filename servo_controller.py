@@ -11,36 +11,40 @@ class ServoController():
     def __init__(self):
 
         self.squares = {
-            1: {
-                "pins": { "photoResistor": 11, "led": 12, "servo": 0 },
-                "state": { "occupied": False }
-            },
-            2: {
-                "pins": { "photoResistor": 9, "led": 1, "servo": 5 },
-                "state": { "occupied": False }
-            },
-            3: {
-                "pins": { "photoResistor": 10, "led": 7, "servo": 6 },
-                "state": { "occupied": False }
-            },
-            4: {
+            Square.A1: {
                 "pins": { "photoResistor": 22, "led": 8, "servo": 13 },
                 "state": { "occupied": False }
             },
-            5: {
+            Square.A2: {
+                "pins": { "photoResistor": 10, "led": 7, "servo": 6 },
+                "state": { "occupied": False }
+            },
+            Square.A3: { # virker ikke
+                "pins": { "photoResistor": 18, "led": 3, "servo": 20 },
+                "state": { "occupied": False }
+            },
+            Square.B1: { # virker ikke
                 "pins": { "photoResistor": 27, "led": 25, "servo": 19 },
                 "state": { "occupied": False }
             },
-            6: {
+            Square.B2: {
+                "pins": { "photoResistor": 15, "led": 2, "servo": 21 },
+                "state": { "occupied": False }
+            },
+            Square.B3: {
+                "pins": { "photoResistor": 9, "led": 1, "servo": 5 },
+                "state": { "occupied": False }
+            },
+            Square.C1: {
                 "pins": { "photoResistor": 17, "led": 24, "servo": 26 },
                 "state": { "occupied": False }
             },
-            7: {
+            Square.C2: {
                 "pins": { "photoResistor": 4, "led": 23, "servo": 16 },
                 "state": { "occupied": False }
             },
-            8: {
-                "pins": { "photoResistor": 15, "led": 2, "servo": 21 },
+            Square.C3: {
+                "pins": { "photoResistor": 11, "led": 12, "servo": 0 },
                 "state": { "occupied": False }
             }
         }
