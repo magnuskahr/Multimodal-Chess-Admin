@@ -75,12 +75,12 @@ class ServoController():
                     self.squares[square]["servo"].ChangeDutyCycle(SOUTH)
         '''
     
-    def setForce(self, force: Force, square: Square):
+    def setForce(self, square: Square, force: Force):
         currentForce = self.squares[square]["state"]["force"]
         if currentForce == force:
             return
         
-        self.squares["state"]["force"] = force
+        self.squares[square]["state"]["force"] = force
 
         if force == Force.neutral:
             self.squares[square]["servo"].ChangeDutyCycle(MID)
