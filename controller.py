@@ -62,4 +62,9 @@ class Controller():
 
     def _place(self, onSquare):
         self.board.move(self.lifting["square"], onSquare)
+        self.board.clearForces()
+        
+        for square in Square:
+            self.servo.setForce(square, Force.neutral)
+            
         self.lifting = None

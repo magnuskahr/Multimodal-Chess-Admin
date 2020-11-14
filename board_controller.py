@@ -131,7 +131,6 @@ class BoardController():
         
         # if performing a move
         self.move(self.board_selected_square, square)
-        self.board.demark(self.board_selected_square)
         self.board_selected_square = None
         self.clearForces()
 
@@ -185,6 +184,7 @@ class BoardController():
         if (occupied == False): 
             return
 
+        self.board.demark(fromSquare)
         self.clear(fromSquare)
         self.place(piece, color, toSquare)
 
