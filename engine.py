@@ -23,6 +23,7 @@ class Engine():
         return virtual_memory().available/(2*1024*1024)		
 
     def rateSquares(self, board, originPosition, oKingSquare):
+        print("ENGINE.py rating board: " + board)
         squareRatings = {}
         for square in self.squares:
             move = originPosition + square
@@ -53,14 +54,14 @@ class Engine():
 #print(str(squareRatings["a2"]) + " " + str(squareRatings["b2"]) + " "  + str(squareRatings["c2"]))
 #print(str(squareRatings["a1"]) + " " + str(squareRatings["b1"]) + " "  + str(squareRatings["c1"]))
 
-stockfish = Stockfish(depth = 3, parameters={
-            "Write Debug Log": True,
-            "Threads": 2,
-            "Skill Level": 20, 
-            "Minimum Thinking Time": 0,
-            "Slow Mover": 0,
-        })
+#stockfish = Stockfish(depth = 3, parameters={
+#            "Write Debug Log": True,
+#            "Threads": 2,
+#            "Skill Level": 20, 
+#            "Minimum Thinking Time": 0,
+#            "Slow Mover": 0,
+#        })
 
-stockfish.set_fen_position("8/8/8/8/8/1K6/N7/1R6 w - - 0 1")
-print(stockfish.get_evaluation())
+#stockfish.set_fen_position("8/8/8/8/8/1K6/N7/1R6 w - - 0 1")
+#print(stockfish.get_evaluation())
 
