@@ -65,6 +65,7 @@ class GUI:
    def clear(self):
       self.board_controller.clearAll()
       self.board_controller.clearForces()
+      self.board_controller.board.clearAll()
 
    def save(self):
       converted = {
