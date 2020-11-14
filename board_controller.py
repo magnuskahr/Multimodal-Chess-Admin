@@ -245,12 +245,12 @@ class BoardController():
     def clearAll(self):
         for square in Square:
             self.clear(square)
+            self.board.demark(square)
             
     
     def reset(self):
         self.clearAll()
         self.clearForces()
-        self.board.demark(self.board_selected_square)
 
         self.board_selected_square = None
 
