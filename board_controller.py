@@ -95,6 +95,7 @@ class BoardController():
         self.board.mark(square)
 
         if self.board_data[square] != None:
+
             self.applyForces(square)
 
     def board_clicked(self, square: Square):
@@ -169,15 +170,20 @@ class BoardController():
                 return ratings[str(square).split(".")[1].lower()]
             else:
                 return Force.neutral
+        
+        def led(square):
+            return True if ratings[str(square).split(".")[1].lower()] != Force.push else False
 
         for square in Square:
             self.board.setForce(square, force(square))
             self.controller.setForce(square, force(square))
+            self.board.attackable(led(square), square)
 
     def clearForces(self):
         for square in Square:
             self.board.setForce(square, Force.neutral)
             self.controller.setForce(square, Force.neutral)
+            self.board.attackable(False, square)
 
 
     def move(self, fromSquare: Square, toSquare: Square):

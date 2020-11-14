@@ -49,8 +49,11 @@ class Controller():
         print("placed " + str(self.lifting["piece"]) + " on " + str(square))
         self._place(square)
 
-    def setForce(self, a, b):
-        self.servo.setForce(a, b)
+    def setForce(self, square, color):
+        self.servo.setForce(square, color)
+
+    def setLed(self, square, attackable):
+        self.servo.setLed(square, attackable)
         
     def _lift(self, color, piece, fromSquare):
         self.lifting = {

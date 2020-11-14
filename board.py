@@ -22,6 +22,7 @@ class Board(Frame):
         rankOne = Frame(self.board)
         rankOne.pack(side = TOP, fill = BOTH, expand = True)
 
+        self.leds = {}
         self.labels = {}
         self.forceLabels = {}
 
@@ -67,16 +68,25 @@ class Board(Frame):
         forceLabel.place(relx=0.5, rely = 1.0, y = -2, anchor = S)
         self.forceLabels[square] = forceLabel
 
+        led = Label(label, text = "", fg = 'red', bg = bg)
+        led.place(relx=0.1, rely = 0.1, y = -2, anchor = N)
+        self.leds[square] = led
+
     def setForce(self, square: Square, force: Force):
         self.forceLabels[square].configure(text = force.value)
+
+    def attackable(self, isAttackable: bool, square: Square):
+        self.leds[square].configure(text = "◉" if isAttackable else "")
 
     def mark(self, square: Square):
         self.labels[square].configure(bg = ("#%02x%02x%02x" % (0, 64, 255)))
         self.forceLabels[square].configure(bg = ("#%02x%02x%02x" % (0, 64, 255)))
+        self.leds[square].configure(bg = ("#%02x%02x%02x" % (0, 64, 255)))
 
     def demark(self, square: Square):
         self.labels[square].configure(bg = self._background(square))
         self.forceLabels[square].configure(bg = self._background(square))
+        self.leds[square].configure(bg = self._background(square))
 
     def _squareClicked(self, square):
         self.listener.board_clicked(square)

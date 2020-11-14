@@ -1,3 +1,4 @@
+
 import RPi.GPIO as GPIO
 import time
 from square import *
@@ -78,6 +79,12 @@ class ServoController():
                     #self.squares[square]["servo"].ChangeDutyCycle(SOUTH)
                     self.controller.board_lifted_square(square)
     
+    def setLed(self, square, attackable):
+        if attackable:
+            GPIO.output(self.squares[square]["pins"]["led"], GPIO.HIGH)
+        else:
+            GPIO.output(self.squares[square]["pins"]["led"], GPIO.LOW)
+
     def setForce(self, square: Square, force: Force):
         currentForce = self.squares[square]["state"]["force"]
         if currentForce == force:
@@ -95,13 +102,17 @@ class ServoController():
 
         
 '''
-while True:
-    for square in squares:
-        newReading = GPIO.input(squares[square]["pins"]["photoResistor"])
-        if newReading != squares[square]["state"]["occupied"]:
-            squares[square]["state"]["occupied"] = newReading
-            if newReading is 1:
-                squares[square]["servo"].ChangeDutyCycle(NORTH)
-            else:
-                squares[square]["servo"].ChangeDutyCycle(SOUTH)
+class ServoController():
+
+    def __init__(self, c):
+        return
+
+    def run(self):
+        return
+    
+    def setForce(self, square, force):
+        return
+
+    def setLed(self, square, attackable):
+        return
 '''
