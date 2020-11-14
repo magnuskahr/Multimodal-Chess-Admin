@@ -44,3 +44,6 @@ for square in squares:
     GPIO.setup(squares[square]["pins"]["servo"], GPIO.OUT)
     squares[square]["servo"] = GPIO.PWM(squares[square]["pins"]["servo"], 50)
     squares[square]["servo"].start(6.6)
+
+while True:
+    continue
