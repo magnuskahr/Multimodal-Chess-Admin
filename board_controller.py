@@ -178,12 +178,14 @@ class BoardController():
             self.board.setForce(square, force(square))
             self.controller.setForce(square, force(square))
             self.board.attackable(led(square), square)
+            self.controller.setLed(square, led(square))
 
     def clearForces(self):
         for square in Square:
             self.board.setForce(square, Force.neutral)
             self.controller.setForce(square, Force.neutral)
             self.board.attackable(False, square)
+            self.controller.setLed(square, False)
 
 
     def move(self, fromSquare: Square, toSquare: Square):
