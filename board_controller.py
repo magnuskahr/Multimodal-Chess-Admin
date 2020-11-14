@@ -133,6 +133,7 @@ class BoardController():
             
             if self.board_data[square] != None:
                 self.clearForces()
+            return
 
         # if moving selection
         if (not self.occupied(self.board_selected_square)):
