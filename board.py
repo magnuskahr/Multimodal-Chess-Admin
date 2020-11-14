@@ -103,4 +103,4 @@ class Board(Frame):
         for square in Square:
             self.clear(square)
             self.demark(square)
-            self.attackable(square, False)
+            self.attackable(False, square)
