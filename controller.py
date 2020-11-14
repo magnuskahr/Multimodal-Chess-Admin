@@ -19,13 +19,13 @@ class Controller():
 
     def board_lifted_square(self, square: Square):
         _, color, piece = self.board.get(square)
-        print("lifting " + piece.value + " of color " + color.value + " from " + square.value)
+        print("lifting " + str(piece) + " of color " + str(color) + " from " + str(square))
         self._lift(color, piece, square)
         return
 
     def board_placed_square(self, square: Square):
         if self.lifting == None: return
-        print("placed " + self.lifting["piece"] + " on " + square.value)
+        print("placed " + self.lifting["piece"] + " on " + str(square))
         self._place(square)
 
     def setForce(self, a, b):
