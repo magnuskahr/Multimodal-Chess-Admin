@@ -20,6 +20,12 @@ class Controller():
     def board_lifted_square(self, square: Square):
         occupied, color, piece = self.board.get(square)
         if occupied == False:
+            print("Error: lifted an onregistred piece from " + str(square))
+            return
+
+        if self.lifting != None:
+            print("Lifted attacked piece")
+            self.board.clear(square)
             return
 
         print("lifting " + str(piece) + " of color " + str(color) + " from " + str(square))
