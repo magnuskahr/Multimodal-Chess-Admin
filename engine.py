@@ -22,12 +22,15 @@ class Engine():
     def _recommended_memory(self):
         return virtual_memory().available/(2*1024*1024)		
 
-    def rateSquares(self, board, originPosition):
+    def rateSquares(self, board, originPosition, oKingSquare):
         squareRatings = {}
         for square in self.squares:
             move = originPosition + square
             self.stockfish.set_fen_position(board)
             squareRatings[square] = Force.push
+
+            if oKingSquare == square:
+                continue
 
             if self.stockfish.is_move_correct(move):
                 self.stockfish.makeMove(move)
@@ -58,6 +61,6 @@ stockfish = Stockfish(depth = 3, parameters={
             "Slow Mover": 0,
         })
 
-stockfish.set_fen_position("8/8/8/8/8/1K6/N7/1kR5 w - - 0 1")
+stockfish.set_fen_position("8/8/8/8/8/1K6/N7/1R6 w - - 0 1")
 print(stockfish.get_evaluation())
 
