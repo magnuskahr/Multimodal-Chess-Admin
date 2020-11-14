@@ -26,7 +26,7 @@ class Controller():
         if self.lifting != None:
             print("Lifted attacked piece from " + str(square))
             self.board.clear(square)
-            self.board.applyForces(self.lifting["square"], False) # recalculate forces
+            self.board.applyForces(self.lifting["square"], square) # recalculate forces
             return
 
         print("lifting " + str(piece) + " of color " + str(color) + " from " + str(square))
