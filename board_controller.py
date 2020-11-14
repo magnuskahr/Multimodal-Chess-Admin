@@ -7,7 +7,9 @@ from engine import *
 
 class BoardController():
 
-    def __init__(self):
+    def __init__(self, sc):
+
+        self.sc = sc
 
         self.engine = Engine()
         self.board = None
@@ -31,25 +33,6 @@ class BoardController():
             Square.C2: None,
             Square.C3: None
         }
-        
-        #keyboard.add_hotkey("space", lambda: self._keyPressed("space"))
-        #keyboard.add_hotkey("down", lambda: self._keyPressed("down"))
-        #keyboard.add_hotkey("up", lambda: self._keyPressed("up"))
-
-    #def _keyPressed(self, key):
-    #    if (self.board_selected_square == None): return
-    #
-    #    if (key == "space"):
-    #        self.board.setForce(self.board_selected_square, Force.neutral)
-    #    elif (key == "down"):
-    #        self.board.setForce(self.board_selected_square, Force.pull)
-    #    elif (key == "up"):
-    #        self.board.setForce(self.board_selected_square, Force.push)
-    #    else:
-    #        return
-    #
-    #    self.board.demark(self.board_selected_square)
-    #    self.board_selected_square = None
 
     def get_fen(self, color):
 
@@ -187,6 +170,7 @@ class BoardController():
 
         for square in Square:
             self.board.setForce(square, force(square))
+            self.sc.setForce(square, force(square))
 
     def clearForces(self):
         for square in Square:

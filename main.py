@@ -8,7 +8,7 @@ class App(threading.Thread):
 
    def __init__(self):
       self.sc = ServoController()
-      self.bc = BoardController()
+      self.bc = BoardController(self.sc)
       self.gui = GUI(self.bc)
       threading.Thread.__init__(self)
       self.start()
