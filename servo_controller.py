@@ -65,18 +65,17 @@ class ServoController():
 
 
     def run(self):
-        return
-        '''
         for square in self.squares:
             newReading = GPIO.input(self.squares[square]["pins"]["photoResistor"])
             if newReading != self.squares[square]["state"]["occupied"]:
                 self.squares[square]["state"]["occupied"] = newReading
                 if newReading is 1:
-                    print(square)
-                    self.squares[square]["servo"].ChangeDutyCycle(NORTH)
+                    #print(square)
+                    #self.squares[square]["servo"].ChangeDutyCycle(NORTH)
+                    self.controller.board_placed_square(square)
                 else:
-                    self.squares[square]["servo"].ChangeDutyCycle(SOUTH)
-        '''
+                    #self.squares[square]["servo"].ChangeDutyCycle(SOUTH)
+                    self.controller.board_lifted_square(square)
     
     def setForce(self, square: Square, force: Force):
         currentForce = self.squares[square]["state"]["force"]
