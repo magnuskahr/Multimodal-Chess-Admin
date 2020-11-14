@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+from square import *
 
 NORTH = 2.6
 MID = 6.6
@@ -60,6 +61,7 @@ class ServoController():
             if newReading != self.squares[square]["state"]["occupied"]:
                 self.squares[square]["state"]["occupied"] = newReading
                 if newReading is 1:
+                    print(square)
                     self.squares[square]["servo"].ChangeDutyCycle(NORTH)
                 else:
                     self.squares[square]["servo"].ChangeDutyCycle(SOUTH)
