@@ -59,4 +59,5 @@ class Controller():
         }
 
     def _place(self, onSquare):
+        self.board.move(self.lifting["square"], onSquare)
         self.lifting = None
