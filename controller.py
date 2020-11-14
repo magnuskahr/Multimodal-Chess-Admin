@@ -25,7 +25,7 @@ class Controller():
 
     def board_placed_square(self, square: Square):
         if self.lifting == None: return
-        print("placed " + self.lifting["piece"] + " on " + str(square))
+        print("placed " + str(self.lifting["piece"]) + " on " + str(square))
         self._place(square)
 
     def setForce(self, a, b):
