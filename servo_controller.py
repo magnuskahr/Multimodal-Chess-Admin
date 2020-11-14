@@ -1,6 +1,10 @@
 import RPi.GPIO as GPIO
 import time
 
+NORTH = 2.6
+MID = 6.6
+SOUTH = 10.6
+
 squares = {
     1: {
         "pins": { "photoResistor": 11, "led": 12, "servo": 0 },
@@ -45,5 +49,13 @@ for square in squares:
     squares[square]["servo"] = GPIO.PWM(squares[square]["pins"]["servo"], 50)
     squares[square]["servo"].start(6.6)
 
+
 while True:
-    continue
+    for square in squares:
+        newReading = GPIO.input(squares[square]["pins"]["photoResistor"])
+        if newReading != squares[square]["state"]["occupied"]:
+            squares[square]["state"]["occupied"] = newReading
+            if newReading is 1:
+                squares[square]["servo"].ChangeDutyCycle(NORTH)
+            else:
+                squares[square]["servo"].ChangeDutyCycle(SOUTH)
