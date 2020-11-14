@@ -1,11 +1,13 @@
 from square import *
 from GUI import *
 from board_controller import *
+from servo_controller import *
 import threading
 
 class App(threading.Thread):
 
    def __init__(self):
+      self.sc = ServoController()
       self.bc = BoardController()
       self.gui = GUI(self.bc)
       threading.Thread.__init__(self)
