@@ -152,6 +152,7 @@ class BoardController():
     def applyForces(self, fromSquare: Square):
         fen = self.get_fen(self.getColor(fromSquare))
        
+        tKing = None
         oKing = None
         for square in self.board_data:
             if self.board_data[square] == None:
@@ -159,10 +160,16 @@ class BoardController():
 
             color = self.board_data[square]['color']
             piece = self.board_data[square]['piece']
-            if color != None and color != self.getColor(fromSquare):
-                if piece != None and piece == Piece.K:
+
+            if piece == Piece.K:
+                if color != self.getColor(fromSquare):
                     oKing = str(square).split(".")[1].lower()
-            
+                elif color == self.getColor(fromSquare):
+                    tKing = str(square).split(".")[1].lower()
+        
+        if oKing == None or tKing == None:
+            return
+
         ratings = self.engine.rateSquares(fen, str(fromSquare).split(".")[1].lower(), oKing)
         
         def force(square):
