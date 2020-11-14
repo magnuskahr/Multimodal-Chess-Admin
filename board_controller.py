@@ -96,7 +96,7 @@ class BoardController():
 
         if self.board_data[square] != None:
 
-            self.applyForces(square)
+            self.applyForces(square, True)
 
     def board_clicked(self, square: Square):
         # if a piece is about to be placed
@@ -135,7 +135,7 @@ class BoardController():
         self.board_selected_square = None
         self.clearForces()
 
-    def applyForces(self, fromSquare: Square):
+    def applyForces(self, fromSquare: Square, recalcLed: bool):
         fen = self.get_fen(self.getColor(fromSquare))
        
         tKing = None
@@ -177,8 +177,9 @@ class BoardController():
         for square in Square:
             self.board.setForce(square, force(square))
             self.controller.setForce(square, force(square))
-            self.board.attackable(led(square), square)
-            self.controller.setLed(square, led(square))
+            if recalcLed:
+                self.board.attackable(led(square), square)
+                self.controller.setLed(square, led(square))
 
     def clearForces(self):
         for square in Square:
