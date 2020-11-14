@@ -40,6 +40,7 @@ squares = {
     }
 }
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 for square in squares:
