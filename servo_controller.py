@@ -69,7 +69,7 @@ class ServoController():
             newReading = GPIO.input(self.squares[square]["pins"]["photoResistor"])
             if newReading != self.squares[square]["state"]["occupied"]:
                 self.squares[square]["state"]["occupied"] = newReading
-                if newReading is 1:
+                if newReading is 0:
                     #print(square)
                     #self.squares[square]["servo"].ChangeDutyCycle(NORTH)
                     self.controller.board_placed_square(square)
