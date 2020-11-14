@@ -49,7 +49,7 @@ class Controller():
         self._place(square)
 
     def setForce(self, a, b):
-        return
+        self.servo.setForce(a, b)
         
     def _lift(self, color, piece, fromSquare):
         self.lifting = {
