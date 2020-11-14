@@ -250,9 +250,9 @@ class BoardController():
     def reset(self):
         self.clearAll()
         self.clearForces()
-        self.board.demark(board_selected_square)
+        self.board.demark(self.board_selected_square)
 
         self.board_selected_square = None
-        
+
         self.selector_selected_piece = None
         self.selector_selected_color = None
