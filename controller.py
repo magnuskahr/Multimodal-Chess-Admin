@@ -18,7 +18,10 @@ class Controller():
         return
 
     def board_lifted_square(self, square: Square):
-        _, color, piece = self.board.get(square)
+        occupied, color, piece = self.board.get(square)
+        if occupied == False:
+            return
+
         print("lifting " + str(piece) + " of color " + str(color) + " from " + str(square))
         self._lift(color, piece, square)
         return
