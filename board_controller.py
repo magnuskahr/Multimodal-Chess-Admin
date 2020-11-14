@@ -7,9 +7,9 @@ from engine import *
 
 class BoardController():
 
-    def __init__(self, sc):
+    def __init__(self, controller):
 
-        self.sc = sc
+        self.controller = controller
 
         self.engine = Engine()
         self.board = None
@@ -172,11 +172,12 @@ class BoardController():
 
         for square in Square:
             self.board.setForce(square, force(square))
-            self.sc.setForce(square, force(square))
+            self.controller.setForce(square, force(square))
 
     def clearForces(self):
         for square in Square:
             self.board.setForce(square, Force.neutral)
+            self.controller.setForce(square, Force.neutral)
 
 
     def move(self, fromSquare: Square, toSquare: Square):
