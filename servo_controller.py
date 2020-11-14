@@ -67,7 +67,7 @@ class ServoController():
     def run(self):
         for square in self.squares:
             read = GPIO.input(self.squares[square]["pins"]["photoResistor"])
-            isNowOccupied = True if read == 1 else False
+            isNowOccupied = False if read == 1 else True
             if isNowOccupied != self.squares[square]["state"]["occupied"]:
                 self.squares[square]["state"]["occupied"] = isNowOccupied
                 if isNowOccupied:
