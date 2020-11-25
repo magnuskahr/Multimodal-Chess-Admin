@@ -1,4 +1,4 @@
-'''
+
 import RPi.GPIO as GPIO
 import time
 from square import *
@@ -136,4 +136,4 @@ class ServoController():
 
     def setLed(self, square, attackable):
         return
-    
+    '''
