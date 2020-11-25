@@ -17,39 +17,39 @@ class ServoController():
 
         self.squares = {
             Square.A1: {
-                "pins": { "photoResistor": 22, "led": 8, "servo": 13 },
+                "pins": { "photoResistor": 15, "led": 2, "servo": 26 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.A2: {
-                "pins": { "photoResistor": 10, "led": 7, "servo": 6 },
+                "pins": { "photoResistor": 11, "led": 12, "servo": 19 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.A3: {
-                "pins": { "photoResistor": 18, "led": 3, "servo": 20 },
+                "pins": { "photoResistor": 9, "led": 1, "servo": 13 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.B1: { # virker ikke
-                "pins": { "photoResistor": 27, "led": 25, "servo": 19 },
+                "pins": { "photoResistor": 17, "led": 24, "servo": 16 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.B2: {
-                "pins": { "photoResistor": 15, "led": 2, "servo": 21 },
+                "pins": { "photoResistor": 27, "led": 25, "servo": 21 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.B3: {
-                "pins": { "photoResistor": 9, "led": 1, "servo": 5 },
+                "pins": { "photoResistor": 4, "led": 23, "servo": 6 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.C1: {
-                "pins": { "photoResistor": 17, "led": 24, "servo": 26 },
+                "pins": { "photoResistor": 18, "led": 3, "servo": 0 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.C2: {
-                "pins": { "photoResistor": 4, "led": 23, "servo": 16 },
+                "pins": { "photoResistor": 10, "led": 7, "servo": 5 },
                 "state": { "occupied": False, "force": Force.neutral }
             },
             Square.C3: {
-                "pins": { "photoResistor": 11, "led": 12, "servo": 0 },
+                "pins": { "photoResistor": 22, "led": 8, "servo": 20 },
                 "state": { "occupied": False, "force": Force.neutral }
             }
         }
@@ -67,6 +67,8 @@ class ServoController():
 
 
     def run(self):
+        pass
+        return
         for square in self.squares:
             read = GPIO.input(self.squares[square]["pins"]["photoResistor"])
             isNowOccupied = False if read == 1 else True
