@@ -153,7 +153,7 @@ class GUI:
                'c1': None, 
                'a2': None, 
                'b2': None, 
-               'c2': { 'piece': Piece.P, 'color': Color.white }, 
+               'c2': { 'piece': Piece.B, 'color': Color.white }, 
                'a3': None, 
                'b3': { 'piece': Piece.Q, 'color': Color.white }, 
                'c3': None
@@ -176,12 +176,12 @@ class GUI:
                'a1': { 'piece': Piece.K, 'color': Color.black }, 
                'b1': None,
                'c1': None, 
-               'a2': { 'piece': Piece.Q, 'color': Color.white },
+               'a2': None,
                'b2': None, 
                'c2': None, 
                'a3': { 'piece': Piece.B, 'color': Color.white },
-               'b3': None, 
-               'c3': None
+               'b3': { 'piece': Piece.B, 'color': Color.white }, 
+               'c3': { 'piece': Piece.R, 'color': Color.white }
             }
          if puzzle == 2:
             return {
@@ -238,7 +238,7 @@ class GUI:
                'a1': { 'piece': Piece.K, 'color': Color.black }, 
                'b1': None,
                'c1': None, 
-               'a2': { 'piece': Piece.R, 'color': Color.white }, 
+               'a2': { 'piece': Piece.B, 'color': Color.white }, 
                'b2': None, 
                'c2': None, 
                'a3': None, 
