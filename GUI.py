@@ -148,27 +148,27 @@ class GUI:
       if modal == "ingen":
          if puzzle == 1:
             return {
-               'a1': { 'piece': Piece.K, 'color': Color.black }, 
-               'b1': None,
+               'a1': None, 
+               'b1': { 'piece': Piece.K, 'color': Color.black },
                'c1': None, 
                'a2': None, 
                'b2': None, 
-               'c2': { 'piece': Piece.B, 'color': Color.white }, 
-               'a3': None, 
-               'b3': { 'piece': Piece.Q, 'color': Color.white }, 
-               'c3': None
+               'c2': { 'piece': Piece.R, 'color': Color.white }, 
+               'a3': { 'piece': Piece.B, 'color': Color.white }, 
+               'b3': { 'piece': Piece.N, 'color': Color.white }, 
+               'c3': { 'piece': Piece.R, 'color': Color.white }
             }
          if puzzle == 2:
             return {
                'a1': { 'piece': Piece.K, 'color': Color.black },
                'b1': None,
-               'c1': None, 
-               'a2': None, 
+               'c1': { 'piece': Piece.B, 'color': Color.white }, 
+               'a2': { 'piece': Piece.P, 'color': Color.white }, 
                'b2': None,
-               'c2': None, 
-               'a3': { 'piece': Piece.N, 'color': Color.white }, 
-               'b3': { 'piece': Piece.Q, 'color': Color.white }, 
-               'c3': None
+               'c2': { 'piece': Piece.B, 'color': Color.white }, 
+               'a3': None, 
+               'b3': None, 
+               'c3': { 'piece': Piece.R, 'color': Color.white }
             }
       elif modal == "lys": 
          if puzzle == 1:
@@ -176,49 +176,49 @@ class GUI:
                'a1': { 'piece': Piece.K, 'color': Color.black }, 
                'b1': None,
                'c1': None, 
-               'a2': None,
-               'b2': None, 
-               'c2': None, 
-               'a3': { 'piece': Piece.B, 'color': Color.white },
-               'b3': { 'piece': Piece.B, 'color': Color.white }, 
+               'a2': { 'piece': Piece.P, 'color': Color.white },
+               'b2': { 'piece': Piece.P, 'color': Color.white }, 
+               'c2': { 'piece': Piece.Q, 'color': Color.white }, 
+               'a3': None,
+               'b3': None, 
                'c3': { 'piece': Piece.R, 'color': Color.white }
             }
          if puzzle == 2:
             return {
-               'a1': { 'piece': Piece.K, 'color': Color.black }, 
-               'b1': None,
+               'a1': None, 
+               'b1': { 'piece': Piece.K, 'color': Color.black },
                'c1': None, 
-               'a2': None, 
-               'b2': None, 
-               'c2': { 'piece': Piece.R, 'color': Color.white }, 
-               'a3': None, 
-               'b3': { 'piece': Piece.Q, 'color': Color.white }, 
-               'c3': None
+               'a2': { 'piece': Piece.P, 'color': Color.white }, 
+               'b2': { 'piece': Piece.P, 'color': Color.white }, 
+               'c2': None, 
+               'a3': { 'piece': Piece.R, 'color': Color.white }, 
+               'b3': { 'piece': Piece.B, 'color': Color.white }, 
+               'c3': { 'piece': Piece.Q, 'color': Color.white }
             }
       elif modal == "magnet":
          if puzzle == 1:
             return {
                'a1': { 'piece': Piece.K, 'color': Color.black }, 
                'b1': None,
-               'c1': { 'piece': Piece.N, 'color': Color.white }, 
-               'a2': None, 
-               'b2': None, 
-               'c2': None, 
-               'a3': { 'piece': Piece.B, 'color': Color.white }, 
-               'b3': None, 
-               'c3': { 'piece': Piece.N, 'color': Color.white }
-            }
-         if puzzle == 2:
-            return {
-               'a1': { 'piece': Piece.K, 'color': Color.black }, 
-               'b1': None,
                'c1': None, 
                'a2': None, 
                'b2': None, 
                'c2': { 'piece': Piece.R, 'color': Color.white }, 
                'a3': { 'piece': Piece.B, 'color': Color.white }, 
-               'b3': None, 
-               'c3': { 'piece': Piece.N, 'color': Color.white }
+               'b3': { 'piece': Piece.B, 'color': Color.white }, 
+               'c3': { 'piece': Piece.R, 'color': Color.white }
+            }
+         if puzzle == 2:
+            return {
+               'a1': None, 
+               'b1': None,
+               'c1': { 'piece': Piece.R, 'color': Color.white }, 
+               'a2': { 'piece': Piece.K, 'color': Color.black }, 
+               'b2': None, 
+               'c2': None, 
+               'a3': None, 
+               'b3': { 'piece': Piece.N, 'color': Color.white }, 
+               'c3': { 'piece': Piece.Q, 'color': Color.white }
             }
       elif modal == "begge":
          if puzzle == 1:
@@ -226,23 +226,23 @@ class GUI:
                'a1': { 'piece': Piece.K, 'color': Color.black }, 
                'b1': None,
                'c1': None, 
-               'a2': None, 
-               'b2': None, 
+               'a2': { 'piece': Piece.P, 'color': Color.white },
+               'b2': { 'piece': Piece.P, 'color': Color.white }, 
                'c2': None, 
-               'a3': None, 
-               'b3': { 'piece': Piece.Q, 'color': Color.white }, 
-               'c3': { 'piece': Piece.N, 'color': Color.white }
+               'a3': None,
+               'b3': { 'piece': Piece.R, 'color': Color.white }, 
+               'c3': { 'piece': Piece.Q, 'color': Color.white }
             }
          if puzzle == 2:
             return {
-               'a1': { 'piece': Piece.K, 'color': Color.black }, 
+               'a1': { 'piece': Piece.K, 'color': Color.black },
                'b1': None,
-               'c1': None, 
-               'a2': { 'piece': Piece.B, 'color': Color.white }, 
-               'b2': None, 
-               'c2': None, 
-               'a3': None, 
-               'b3': { 'piece': Piece.Q, 'color': Color.white }, 
+               'c1': { 'piece': Piece.B, 'color': Color.white }, 
+               'a2': { 'piece': Piece.P, 'color': Color.white }, 
+               'b2': None,
+               'c2': { 'piece': Piece.B, 'color': Color.white }, 
+               'a3': { 'piece': Piece.R, 'color': Color.white }, 
+               'b3': None, 
                'c3': None
             }
          

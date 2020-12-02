@@ -38,7 +38,7 @@ class Engine():
                 
                 eva = self.stockfish.get_evaluation()
                 
-                if eva['type'] == "mate" and abs(eva['value']) == 0:
+                if eva['type'] == "mate" and abs(eva['value']) <= 1:
                     squareRatings[square] = Force.pull
                 else:
                     squareRatings[square] = Force.neutral
